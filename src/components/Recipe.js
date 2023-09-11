@@ -1,18 +1,27 @@
 import React from "react";
 import styles from "./Recipe.module.scss";
-import couscous from "../assets/images/couscous-viande.jpg";
+import { useState } from "react";
 
-function Recipe() {
+function Recipe({ title, image }) {
+  const [liked, setLiked] = useState(false);
+  function handleClick() {
+    setLiked(!liked);
+  }
   return (
-    <div className={styles.recipe}>
+    <div onClick={handleClick} className={styles.recipe}>
       <div className={styles.imageContainer}>
-        <img src={couscous} alt="Recipe" />
+        <img src={image} alt="recipe" />
       </div>
 
       <div
-        className={`${styles.recipeTitle} d-flex flex-row align-items-center justify-content-center `}
+        className={`${styles.recipeTitle} d-flex flex-column align-items-center justify-content-center `}
       >
-        <h3>Couscous Viande</h3>
+        <h3 className="mb-10">
+          {title}
+          <i
+            class={`fa-sharp fa-solid fa-heart ${liked ? "text-primary" : " "}`}
+          ></i>
+        </h3>
       </div>
     </div>
   );

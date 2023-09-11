@@ -14,7 +14,7 @@ function Header() {
       <ul className="p-5">
         <button className="mr-5 btn btn-reverse-primary">
           <i class="fa-solid fa-basket-shopping mr-5"></i>
-          <span>Panier</span>
+          <span>WISHLIST</span>
         </button>
         <button className="btn btn-primary">Connexion</button>
       </ul>

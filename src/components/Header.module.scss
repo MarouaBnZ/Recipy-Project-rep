@@ -1,3 +1,5 @@
+@use '../assets/styles/_mixins.scss'  as mixin;
+
 .header{
   padding:10px 20px;
   box-shadow: var(--box-shadow);
@@ -6,3 +8,23 @@
     width:130px;
   }
 }
+
+.headerList{
+  @include mixin.xs{
+    display:none;
+  }
+}
+
+.headerXs{
+
+  display:none;
+  @include mixin.xs{
+    display:black;
+  }
+}
+
+
+
+
+
+
