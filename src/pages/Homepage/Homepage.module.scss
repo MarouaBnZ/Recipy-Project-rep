@@ -1,4 +1,4 @@
-@use '../assets/styles/mixins' as mixin;
+@use '../../assets/styles/mixins' as mixin;
 .grid{
   display:grid;
   grid-template-columns: repeat(3, 350px);
@@ -25,4 +25,15 @@
 .contentCard{
   width:100%;
   max-width:1130px; 
+}
+
+.searchBar{
+
+  padding:10px 15px;
+  border:1px solid var(--gray-2);
+  border-radius: 20px;
+  input{
+    outline:0;
+    border:0;
+  }
 }
