@@ -1,11 +1,25 @@
-import React from "react";
+import { ApiContext } from "../../../../context/ApiContext";
 import styles from "./Recipe.module.scss";
-import { useState } from "react";
+import { useContext } from "react";
 
-function Recipe({ title, image }) {
-  const [liked, setLiked] = useState(false);
-  function handleClick() {
-    setLiked(!liked);
+function Recipe({ recipe: { title, image, liked, _id }, togglelikedRecipe }) {
+  const BASE_URL_API = useContext(ApiContext);
+  async function handleClick() {
+    try {
+      const response = await fetch(`${BASE_URL_API}/${_id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application.json",
+        },
+        body: JSON.stringify({ liked: !liked }),
+      });
+      if (response.ok) {
+        const updatedRecipe = await response.JSON();
+        togglelikedRecipe(updatedRecipe);
+      }
+    } catch (error) {
+      console.log("ERROR");
+    }
   }
   return (
     <div onClick={handleClick} className={styles.recipe}>
@@ -14,9 +28,9 @@ function Recipe({ title, image }) {
       </div>
 
       <div
-        className={`${styles.recipeTitle} d-flex flex-column align-items-center justify-content-center `}
+        className={`${styles.recipeTitle} d-flex flex-column align-items-center justify-content-center mb-20 `}
       >
-        <h3 className="mb-10">
+        <h3 className="mb-20 d-flex flex-column align-items-center ">
           {title}
           <i
             class={`fa-sharp fa-solid fa-heart ${liked ? "text-primary" : " "}`}
